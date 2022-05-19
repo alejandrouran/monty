@@ -3,20 +3,20 @@
 /**
  * pint - prints the value at the top of the stack, followed by a new line
  * @head: node pointer to head
- * @line: line number
+ * @line_number: line number
  * Return: value
  */
-void pint(stack_t **stack, unsigned int line_number)
+void pint(stack_t **head, unsigned int line_number)
 {
 	stack_t *tmp;
 
-	if (stack == NULL || *stack == NULL)
+	if (head == NULL || *head == NULL)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
-	tmp = *stack;
+	tmp = *head;
 	while (tmp)
 	{
 		if (tmp->prev == NULL)
@@ -55,7 +55,7 @@ void pop(stack_t **head, unsigned int line_number)
 /**
  * swap - swaps the top two elements of the stack
  * @head: node pointer to head
- * @line_number: line number 
+ * @line_number: line number
  * Return: void
  */
 void swap(stack_t **head, unsigned int line_number)
@@ -74,18 +74,18 @@ void swap(stack_t **head, unsigned int line_number)
 
 /**
  * push - pusehs  node to the top of stack
- * @stack: pointer to the head node pointer of stack
- * @liine: the line number
+ * @head: pointer to the head node pointer of stack
+ * @line_number: the line number
  * @arg: arguments
  * Return: Nothing
  */
-void push(stack_t **stack, unsigned int line, char *arg)
+void push(stack_t **head, unsigned int line_number, char *arg)
 {
 	stack_t *node = NULL;
 
-	if (stack == NULL)
+	if (head == NULL)
 	{
-		fprintf(stderr, "L%d: Error stack not found\n", line);
+		fprintf(stderr, "L%d: Error stack not found\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
@@ -94,14 +94,14 @@ void push(stack_t **stack, unsigned int line, char *arg)
 	if (node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		free_stack(stack);
+		free_stack(head);
 		exit(EXIT_FAILURE);
 	}
-	node->n; atoi(arg);
+	node->n = atoi(arg);
 	node->prev = NULL;
-	node->next = *stack;
-	if (*stack)
-		(*stack)->prev = node;
-	
-	(*stack) = node;
+	node->next = *head;
+	if (*head)
+		(*head)->prev = node;
+
+	(*head) = node;
 }
