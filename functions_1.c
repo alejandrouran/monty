@@ -6,9 +6,9 @@
  * @line: line number
  * Return: value
  */
-void pint(stack_t **head, unsigned int line_number)
+void pint(stack_t **stack, unsigned int line_number)
 {
-	stack_ *tmp;
+	stack_t *tmp;
 
 	if (stack == NULL || *stack == NULL)
 	{
@@ -36,7 +36,7 @@ void pop(stack_t **head, unsigned int line_number)
 {
 	if (head == NULL || *head == NULL)
 	{
-		fprintf(stderr, "L%d: cat't pop an empty stack\n" line_number);
+		fprintf(stderr, "L%d: cat't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	if ((*head)->next != NULL)
@@ -58,7 +58,7 @@ void pop(stack_t **head, unsigned int line_number)
  * @line_number: line number 
  * Return: void
  */
-void swap(stack_t **head, unsigned int line_number);
+void swap(stack_t **head, unsigned int line_number)
 {
 	int tmp;
 
@@ -70,4 +70,38 @@ void swap(stack_t **head, unsigned int line_number);
 	tmp = (*head)->n;
 	(*head)->n = (*head)->next->n;
 	(*head)->next->n = tmp;
+}
+
+/**
+ * push - pusehs  node to the top of stack
+ * @stack: pointer to the head node pointer of stack
+ * @liine: the line number
+ * @arg: arguments
+ * Return: Nothing
+ */
+void push(stack_t **stack, unsigned int line, char *arg)
+{
+	stack_t *node = NULL;
+
+	if (stack == NULL)
+	{
+		fprintf(stderr, "L%d: Error stack not found\n", line);
+		exit(EXIT_FAILURE);
+	}
+
+	node = malloc(sizeof(stack_t));
+
+	if (node == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		free_stack(stack);
+		exit(EXIT_FAILURE);
+	}
+	node->n; atoi(arg);
+	node->prev = NULL;
+	node->next = *stack;
+	if (*stack)
+		(*stack)->prev = node;
+	
+	(*stack) = node;
 }
