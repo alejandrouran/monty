@@ -41,5 +41,12 @@ void pint(stack_t **head, unsigned int line_number);
 void pop(stack_t **head, unsigned int line_number);
 void swap(stack_t **head, unsigned int line_number);
 void push(stack_t **stack, unsigned int line, char *arg);
+void pall(stack_t **stack, unsigned int line);
+void free_stack(stack_t **head);
+bool valid_arg(char *arg);
+void get_opcode_func(char *opcode, stack_t **stack, unsigned int line, FILE *f);
+void process(FILE *file);
+void add(stack_t **head, unsigned int line_number);
+void nop(stack_t **head, unsigned int line_number);
 
 #endif

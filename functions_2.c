@@ -9,7 +9,7 @@
 void pall(stack_t **head, unsigned int line_number)
 {
 	stack_t *tmp;
-	(void)line;
+	(void)line_number;
 
 	tmp = *head;
 	while (tmp)
@@ -50,5 +50,5 @@ void add(stack_t **head, unsigned int line_number)
 void nop(stack_t **head, unsigned int line_number)
 {
 	(void)head;
-	(void)line;
+	(void)line_number;
 }
