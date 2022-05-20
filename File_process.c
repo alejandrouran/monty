@@ -57,8 +57,8 @@ void process(FILE *file)
 void get_opcode_func(char *opcode, stack_t **stack, unsigned int line, FILE *f)
 {
     int i = 0;
-    instruction_t ops[] = {{"pall, pall"},
-                           {"pint", pint},{"pop, pop"},
+    instruction_t ops[] = {{"pall", pall},
+                           {"pint", pint},{"pop", pop},
                            {"swap", swap}, {"add", add},
                            {"nop", nop}, {NULL, NULL}};
     
